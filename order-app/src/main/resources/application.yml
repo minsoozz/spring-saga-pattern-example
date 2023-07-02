@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:orders;DATABASE_TO_UPPER=false;
+    username: minsoo
+    password:
+  jpa:
+    database: h2
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-01
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
